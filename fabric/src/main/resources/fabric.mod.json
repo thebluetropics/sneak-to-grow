@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "id": "sneaktogrow",
+  "version": "0.1.0-alpha",
+  "name": "Sneak to Grow",
+  "authors": ["thebluetropics"],
+  "license": "MIT",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "io.github.thebluetropics.sneaktogrow.SneakToGrowMod"
+    ]
+  },
+  "mixins": [
+    {
+      "environment": "*",
+      "config": "sneaktogrow.common.mixins.json"
+    }
+  ],
+  "depends": {
+    "minecraft": "1.20.6",
+    "fabricloader": ">=0.16.7",
+    "fabric-api": ">=0.97.8+1.20.6",
+    "java": ">=21"
+  }
+}

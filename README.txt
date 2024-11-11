@@ -1,1 +1,1 @@
-A Minecraft mod that adds the ability to grow everything by sneaking.
+A mod where you grow things by repeatedly sneaking.

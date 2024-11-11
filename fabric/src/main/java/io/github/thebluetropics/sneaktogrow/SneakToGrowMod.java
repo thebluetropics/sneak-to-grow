@@ -7,7 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class SneakToGrowMod implements ModInitializer {
-  public static final String ID = "sneaktogrow";
+  public static final String ID = "sneak_to_grow";
   public static final Logger LOGGER = LoggerFactory.getLogger(ID);
 
   @Override

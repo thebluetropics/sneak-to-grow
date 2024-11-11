@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "id": "sneaktogrow",
+  "id": "sneak_to_grow",
   "version": "0.1.0-alpha",
   "name": "Sneak to Grow",
   "authors": ["thebluetropics"],
@@ -17,7 +17,7 @@
   "mixins": [
     {
       "environment": "*",
-      "config": "sneaktogrow.common.mixins.json"
+      "config": "sneak_to_grow.common.mixins.json"
     }
   ],
   "depends": {

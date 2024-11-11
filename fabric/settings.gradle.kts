@@ -8,3 +8,5 @@ pluginManagement {
     }
   }
 }
+
+rootProject.name = "sneak-to-grow"

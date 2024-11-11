@@ -9,6 +9,9 @@
   "entrypoints": {
     "main": [
       "io.github.thebluetropics.sneaktogrow.SneakToGrowMod"
+    ],
+    "client": [
+      "io.github.thebluetropics.sneaktogrow.client.SneakToGrowModClient"
     ]
   },
   "mixins": [

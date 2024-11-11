@@ -45,6 +45,18 @@ public class PlayerEntityMixin {
               }
             }
           }
+
+          if (blockState.getBlock() instanceof SweetBerryBushBlock) {
+            if (blockState.get(SweetBerryBushBlock.AGE) < 3) {
+              if (Objects.equals(world.random.nextInt(16), 0)) {
+                world.setBlockState(
+                  blockPos,
+                  blockState.with(SweetBerryBushBlock.AGE, blockState.get(SweetBerryBushBlock.AGE) + 1),
+                  Block.NOTIFY_LISTENERS
+                );
+              }
+            }
+          }
         }
       }
 

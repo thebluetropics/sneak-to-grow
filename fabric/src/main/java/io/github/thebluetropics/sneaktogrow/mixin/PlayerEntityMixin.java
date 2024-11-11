@@ -40,7 +40,9 @@ public class PlayerEntityMixin {
 
           if (blockState.getBlock() instanceof CropBlock) {
             if (Objects.equals(world.random.nextInt(16), 0)) {
-              world.setBlockState(blockPos, blockState.with(CropBlock.AGE, blockState.get(CropBlock.AGE) + 1), Block.NOTIFY_LISTENERS);
+              if (blockState.get(CropBlock.AGE) < CropBlock.MAX_AGE) {
+                world.setBlockState(blockPos, blockState.with(CropBlock.AGE, blockState.get(CropBlock.AGE) + 1), Block.NOTIFY_LISTENERS);
+              }
             }
           }
         }

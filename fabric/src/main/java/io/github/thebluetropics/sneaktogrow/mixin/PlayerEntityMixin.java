@@ -1,11 +1,13 @@
 package io.github.thebluetropics.sneaktogrow.mixin;
 
+import io.github.thebluetropics.sneaktogrow.networking.s2c.SneakToGrowPayload;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.block.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BoneMealItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.server.world.ServerWorld;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3i;
 import org.spongepowered.asm.mixin.Mixin;
@@ -60,9 +62,12 @@ public class PlayerEntityMixin {
         BlockPos selectedBlockPos = growableBlockPosSet.toArray(new BlockPos[]{})[world.getRandom().nextInt(growableBlockPosSet.size())];
         BlockState selectedBlockState = world.getBlockState(selectedBlockPos);
 
+        boolean shouldPlaySoundEffect = false;
+
         if (selectedBlockState.getBlock() instanceof CropBlock) {
           if (Objects.equals(world.random.nextInt(16), 0)) {
             world.setBlockState(selectedBlockPos, selectedBlockState.with(CropBlock.AGE, selectedBlockState.get(CropBlock.AGE) + 1), Block.NOTIFY_LISTENERS);
+            shouldPlaySoundEffect = true;
           }
         }
 
@@ -79,7 +84,12 @@ public class PlayerEntityMixin {
               selectedBlockState.with(SweetBerryBushBlock.AGE, selectedBlockState.get(SweetBerryBushBlock.AGE) + 1),
               Block.NOTIFY_LISTENERS
             );
+            shouldPlaySoundEffect = true;
           }
+        }
+
+        for (ServerPlayerEntity receiver : world.getServer().getPlayerManager().getPlayerList()) {
+          ServerPlayNetworking.send(receiver, new SneakToGrowPayload(selectedBlockPos, shouldPlaySoundEffect));
         }
       }
 
